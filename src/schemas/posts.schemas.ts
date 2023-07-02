@@ -1,8 +1,13 @@
 import Joi from "joi";
-import { Post, CreatePost } from "@/protocols";
+import { CreatePost } from "@/protocols";
 
 export const createPostSchema = Joi.object<CreatePost>({
     description: Joi.string().required(),
     url: Joi.string(),
     userId: Joi.number().required()
+})
+
+export const updatePostSchema = Joi.object({
+    description: Joi.string().required(),
+    url: Joi.string()
 })

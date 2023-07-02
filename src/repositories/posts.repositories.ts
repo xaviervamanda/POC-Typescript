@@ -8,6 +8,10 @@ export function getAllPosts() {
 export function getPostByDescription (description: string, userId: number) {
     return db.query<Post>(`SELECT * FROM posts WHERE description = $1 AND "userId" = $2;`, [description, userId]);
 }
+
+export function getPostById (id: number) {
+    return db.query<Post>(`SELECT * FROM posts WHERE id = $1;`, [id]);
+}
 export function createPost(body: CreatePost) {
     return db.query(`INSERT INTO posts (description, url, "userId") VALUES ($1, $2, $3);`, [body.description, body.url, body.userId]);
 }

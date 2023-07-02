@@ -22,3 +22,5 @@ export type Post = {
 }
 
 export type CreatePost = Omit<Post, "id" | "createdAt">;
+
+export type UpdatePost = Omit<Post, "id" | "createdAt" | "userId">;

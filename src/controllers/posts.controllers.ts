@@ -32,3 +32,32 @@ export async function createPost (req: Request, res: Response) {
     }
 }
 
+export async function deletePost (req: Request, res: Response) {
+    const {id} = req.params;
+    
+    try{
+        await postsServices.deletePost(Number(id));
+        
+        return res.sendStatus(httpStatus.OK);
+    } catch (error) {
+        if (error.name === "NotFoundError"){
+            return res.status(httpStatus.NOT_FOUND).send(error.message);
+        }
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message)
+    }
+}
+
+export async function updatePost (req: Request, res: Response) {
+    const {id} = req.params;
+    
+    try{
+        await postsServices.updatePost(Number(id), req.body);
+        
+        return res.sendStatus(httpStatus.OK);
+    } catch (error) {
+        if (error.name === "NotFoundError"){
+            return res.status(httpStatus.NOT_FOUND).send(error.message);
+        }
+        return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error.message)
+    }
+}
