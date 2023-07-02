@@ -12,3 +12,13 @@ export type ApplicationError = {
     name: string;
     message: string;
   };
+
+export type Post = {
+    id: number;
+    description: string;
+    url: string;
+    userId: number;
+    createdAt: string;
+}
+
+export type CreatePost = Omit<Post, "id" | "createdAt">;
